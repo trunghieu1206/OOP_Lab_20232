@@ -8,7 +8,6 @@ public class DigitalVideoDisc {
 	private float cost;
 	
 	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-		super();
 		this.title = title;
 		this.category = category;
 		this.director = director;
@@ -32,14 +31,28 @@ public class DigitalVideoDisc {
 		this.cost = cost;
 	}
 	
+	public DigitalVideoDisc(String title, String category, float cost) {
+		this.title = title;
+		this.category = category;
+		this.cost = cost;
+	}
 	
 	public String getTitle() {
+		if(this.title == null) {
+			return null;
+		}
 		return title;
 	}
 	public String getCategory() {
+		if(this.category == null) {
+			return null;
+		}
 		return category;
 	}
 	public String getDirector() {
+		if(this.director == null) {
+			return null;
+		}
 		return director;
 	}
 	public int getLength() {
@@ -62,5 +75,12 @@ public class DigitalVideoDisc {
 	}
 	public void setLength(int length) {
 		this.length = length;
+	}
+	
+	public boolean isMatch(String title) {
+		if(this.getTitle().contains(title)) {
+			return true;
+		}
+		return false;
 	}
 }

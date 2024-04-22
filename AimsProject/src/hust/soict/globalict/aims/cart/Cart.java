@@ -46,4 +46,81 @@ public class Cart {
 		}
 		return sum;
 	}
+	
+	public String toString() {
+		StringBuilder str = new StringBuilder("");
+		for(int i = 0; i < qtyOrdered; i++) {
+			str.append("\n");
+			str.append(i + 1);
+			str.append(". DVD - ");
+			str.append(itemsOrdered[i].getTitle());
+			str.append(" - ");
+			str.append(itemsOrdered[i].getCategory());
+			str.append(" - ");
+			str.append(itemsOrdered[i].getDirector());
+			str.append(" - ");
+			str.append(itemsOrdered[i].getLength());
+			str.append(": ");
+			str.append(itemsOrdered[i].getCost());
+		}
+		return str.toString();
+	}
+	
+	public void print() {
+		System.out.println("\n***********************CART***********************");
+		System.out.print("Ordered Items:");
+		System.out.println(this.toString());
+		System.out.println("***************************************************");
+	}
+	
+	public void searchByID(int ID) {
+		if(ID > qtyOrdered) {
+			System.out.println("\nNo match found!");
+			return;
+		}
+		System.out.println("\n***********************CART***********************");
+		System.out.println("Searched results for id: " + ID);
+		StringBuilder str = new StringBuilder();
+		str.append("DVD - ");
+		str.append(itemsOrdered[ID].getTitle());
+		str.append(" - ");
+		str.append(itemsOrdered[ID].getCategory());
+		str.append(" - ");
+		str.append(itemsOrdered[ID].getDirector());
+		str.append(" - ");
+		str.append(itemsOrdered[ID].getLength());
+		str.append(": ");
+		str.append(itemsOrdered[ID].getCost());
+		System.out.println(str.toString());
+		System.out.println("***************************************************");
+	}
+	
+	public void searchByTitle(String title) {
+		int found = -1;
+		StringBuilder str = new StringBuilder();
+		for(int i = 0; i < qtyOrdered; i++) {
+			if(itemsOrdered[i].isMatch(title)) {
+				found = 1;
+				str.append("\nDVD - ");
+				str.append(itemsOrdered[i].getTitle());
+				str.append(" - ");
+				str.append(itemsOrdered[i].getCategory());
+				str.append(" - ");
+				str.append(itemsOrdered[i].getDirector());
+				str.append(" - ");
+				str.append(itemsOrdered[i].getLength());
+				str.append(": ");
+				str.append(itemsOrdered[i].getCost());
+			}
+		}
+		if(found == -1) {
+			System.out.println("No match found!");
+			return;
+		}
+		System.out.println("\n***********************CART***********************");
+		System.out.print("Searched results for Title: " + title);
+		System.out.println(str.toString());
+		System.out.println("***************************************************");
+	}
+	
 }
