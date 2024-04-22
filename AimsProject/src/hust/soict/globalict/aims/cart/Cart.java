@@ -47,30 +47,13 @@ public class Cart {
 		return sum;
 	}
 	
-	public String toString() {
-		StringBuilder str = new StringBuilder("");
-		for(int i = 0; i < qtyOrdered; i++) {
-			str.append("\n");
-			str.append(i + 1);
-			str.append(". DVD - ");
-			str.append(itemsOrdered[i].getTitle());
-			str.append(" - ");
-			str.append(itemsOrdered[i].getCategory());
-			str.append(" - ");
-			str.append(itemsOrdered[i].getDirector());
-			str.append(" - ");
-			str.append(itemsOrdered[i].getLength());
-			str.append(": ");
-			str.append(itemsOrdered[i].getCost());
-		}
-		return str.toString();
-	}
-	
 	public void print() {
 		System.out.println("\n***********************CART***********************");
 		System.out.print("Ordered Items:");
-		System.out.println(this.toString());
-		System.out.println("***************************************************");
+		for(int i = 0; i < qtyOrdered; i++) {
+			System.out.print("\n" + (i + 1) + ". " + itemsOrdered[i].toString());
+		}
+		System.out.println("\n***************************************************");
 	}
 	
 	public void searchByID(int ID) {

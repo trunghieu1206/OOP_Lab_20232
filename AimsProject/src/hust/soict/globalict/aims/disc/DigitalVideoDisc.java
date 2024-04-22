@@ -83,4 +83,19 @@ public class DigitalVideoDisc {
 		}
 		return false;
 	}
+	
+	public String toString() {
+		StringBuilder str = new StringBuilder("");
+		str.append("DVD - ");
+		str.append(this.getTitle());
+		str.append(" - ");
+		str.append(this.getCategory());
+		str.append(" - ");
+		str.append(this.getDirector());
+		str.append(" - ");
+		str.append(this.getLength());
+		str.append(": ");
+		str.append(this.getCost());
+		return str.toString();
+	}
 }

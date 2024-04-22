@@ -35,28 +35,12 @@ public class Store {
 		return 1;
 	}	
 	
-	public String toString() {
-		StringBuilder str = new StringBuilder("");
-		for(DigitalVideoDisc itemInStore : itemsInStore) {
-			str.append("\n");
-			str.append("DVD - ");
-			str.append(itemInStore.getTitle());
-			str.append(" - ");
-			str.append(itemInStore.getCategory());
-			str.append(" - ");
-			str.append(itemInStore.getDirector());
-			str.append(" - ");
-			str.append(itemInStore.getLength());
-			str.append(": ");
-			str.append(itemInStore.getCost());
-		}
-		return str.toString();
-	}
-	
 	public void print() {
 		System.out.println("\n***********************Store***********************");
 		System.out.print("Available DVDs in Store:");
-		System.out.println(this.toString());
-		System.out.println("***************************************************");
+		for(DigitalVideoDisc itemInStore : itemsInStore) {
+			System.out.print("\n" + itemInStore.toString());
+		}
+		System.out.println("\n***************************************************");
 	}
 }
