@@ -1,0 +1,12 @@
+Ex 6.1:
+    - If users choose "Cancel", it will assign variable "option" the same as "Cancel", but since we are comparing if "option" is equal to "Yes" (it is not) then the program will show the dialog that user has chosen "No" instead.
+    - To customize the options with only "Yes" or "No" you can change the line:
+        int option = JOptionPane.showConfirmDialog(null, "Do you want to change to the first class ticket?");
+    to:
+        int option = JOptionPane.showConfirmDialog(null, "Do you want to change to the first class ticket?", null, JOptionPane.YES_NO_OPTION);
+    - Some parameters that we can add into JOptionPane.showConfirmDialog:
+        JOptionPane.showConfirmDialog(Component parentComponent, Object message, String title, int optionType, int messageType)
+    where "message" is the message we want to display
+          "tile" is the tile of the dialog
+          "optionType" is the option we want to use (Some options available are: YES_NO_OPTION, YES_NO_CANCEL_OPTION, OK_CANCEL_OPTION)
+          "messageType" is the type of message 
