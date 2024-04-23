@@ -61,4 +61,11 @@ public abstract class Media {
 	}
 	
 	public abstract boolean isMatch(String title);
+	
+	public boolean equals(Media media) {
+		if(this.getTitle().equals(media.getTitle())) {
+			return true;
+		}
+		return false;
+	}
 }
