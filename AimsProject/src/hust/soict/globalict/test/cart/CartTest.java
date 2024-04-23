@@ -22,7 +22,7 @@ public class CartTest {
 				"Star Wars",
 				"Science Fiction",
 				"George Lucas",
-				87,
+				50,
 				24.95f
 		);
 		cart.addMedia(dvd2);
@@ -30,6 +30,8 @@ public class CartTest {
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc(
 				"Aladin",
 				"Animation",
+				"Guy Ritchie",
+				20,
 				18.99f
 		);
 		cart.addMedia(dvd3);
@@ -37,6 +39,8 @@ public class CartTest {
 		DigitalVideoDisc dvd4 = new DigitalVideoDisc(
 				"Alibaba",
 				"Animation",
+				"Somebody",
+				34,
 				50.0f
 		);
 		cart.addMedia(dvd4);
@@ -46,11 +50,9 @@ public class CartTest {
 		//Test the print method
 		cart.print();
 		
-		//Test the search method by ID
-		cart.searchByID(1);
+		cart.sort();
 		
-		//Test the search method by Title
-		cart.searchByTitle("Al");
+		cart.print();
 		
 	}
 }	

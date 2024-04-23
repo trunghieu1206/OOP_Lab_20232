@@ -11,7 +11,7 @@ Answer for part 8: If you create a constructor method to build a DVD by title th
 
 # Answers for questions in Lab03:
 What should be the return type of the toString() method in DigitalVideoDisc:
-	- this method should be used to serialize the information of the Object of the DigitalVideoDisc and store the information as a String
+	- this method should be used to store the information of the Object of the DigitalVideoDisc as a String
 	- the return type of the toString() method should be String
 	
 Which classes are aggregates of other classes?
@@ -44,3 +44,32 @@ Poylymorphism allows objects of different classes to be treated as objects of a 
 		+ Inheritance is used to achieve reusability of code and establish a child-parent relationship between classes. Polymorphism
 is used to achieve flexibility in code by allowing different classes to be treated as instances of the same class, especially when their
 methods share the same name.
+
+What class should implement the Comparable interface?
+	- the Media class should implement the Comparable interface
+
+In those classes, how should you implement the compareTo() method to reflect the ordering that we want?
+	- the compareTo() method should be implemented like this:
+	@Override
+	public int compareTo(Media media) {
+		if(this.getTitle().compareTo(media.getTitle()) != 0) {
+			return this.getTitle().compareTo(media.getTitle());
+		}
+		float compare = this.getCost() - media.getCost();
+		if(compare < 0) {
+			return -1;
+		}
+		else if(compare > 0) {
+			return 1;
+		}
+		return 0;
+	}
+
+Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this
+Comparable interface approach?
+	- No, we cannot have 2 ordering rules of the item because we can override the method compareTo() only once in Media Class
+
+Suppose the DVDs have a different ordering rule from the other media types, that is by title, then
+decreasing length, then cost. How would you modify your code to allow this?
+	- 
+
