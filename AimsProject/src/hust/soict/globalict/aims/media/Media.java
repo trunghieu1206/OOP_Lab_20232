@@ -59,5 +59,6 @@ public abstract class Media {
 	public void setCost(float cost) {
 		this.cost = cost;
 	}
-
+	
+	public abstract boolean isMatch(String title);
 }

@@ -2,7 +2,7 @@ package hust.soict.globalict.aims.media;
 
 import java.util.*;
 
-public class CompactDisc extends Disc{
+public class CompactDisc extends Disc implements Playable{
 	private String artist;
 	List<Track> tracks = new ArrayList<Track>();
 
@@ -32,6 +32,16 @@ public class CompactDisc extends Disc{
 		for(Track track : tracks) {
 			sumLength += track.getLength();
 		}
-		return sumLength;
+		return sumLength;	
+	}
+	
+	public void play() {
+		System.out.println("\nCD is containing " + tracks.size());
+		System.out.println("Playing each track one by one");
+		for(Track track : tracks) {
+			System.out.println("*Playing track: " + track.getTitle());
+			track.play();
+		}
+		System.out.println("CD finished playing");
 	}
 }

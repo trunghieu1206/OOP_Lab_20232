@@ -16,7 +16,7 @@ public class StoreTest {
 				87,
 				19.95f
 		);
-		store.addDVD(dvd1);
+		store.addMedia(dvd1);
 		
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc(
 				"Star Wars",
@@ -25,24 +25,24 @@ public class StoreTest {
 				87,
 				24.95f
 		);
-		store.addDVD(dvd2);
+		store.addMedia(dvd2);
 		
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc(
 				"Aladin",
 				"Animation",
 				18.99f
 		);
-		store.addDVD(dvd3);
+		store.addMedia(dvd3);
 		
 		DigitalVideoDisc dvd4 = new DigitalVideoDisc(
 				"Alibaba",
 				"Animation",
 				50.0f
 		);
-		store.addDVD(dvd4);
+		store.addMedia(dvd4);
 			
 		
-		store.removeDVD(dvd2);
+		store.removeMedia(dvd4);
 		
 		store.print();
 	}

@@ -25,4 +25,8 @@ public class Book extends Media {
 		}
 		System.out.println("\n" + authorName + " does not exist, cannot remove!");
 	}
+	
+	public boolean isMatch(String title) {
+		return true;
+	}
 }

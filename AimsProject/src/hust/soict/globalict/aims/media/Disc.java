@@ -38,8 +38,6 @@ public class Disc extends Media{
 		super(title);
 	}
 	
-	
-
 	public int getLength() {
 		return length;
 	}
@@ -54,6 +52,10 @@ public class Disc extends Media{
 
 	public void setDirector(String director) {
 		this.director = director;
+	}
+	
+	public boolean isMatch(String title) {
+		return true;
 	}
 
 }

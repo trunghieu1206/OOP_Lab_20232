@@ -13,7 +13,7 @@ public class Aims{
 				87,
 				19.95f
 		);
-		anOrder.addDigitalVideoDiscs(dvd1);
+		anOrder.addMedia(dvd1);
 		
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc(
 				"Star Wars",
@@ -22,7 +22,7 @@ public class Aims{
 				87,
 				24.95f
 		);
-		anOrder.addDigitalVideoDiscs(dvd2);
+		anOrder.addMedia(dvd2);
 		
 		DigitalVideoDisc dvd3  = new DigitalVideoDisc(
 				"Aladin",
@@ -31,7 +31,7 @@ public class Aims{
 				20,
 				18.99f
 		);
-		anOrder.addDigitalVideoDiscs(dvd3);
+		anOrder.addMedia(dvd3);
 		
 		System.out.print("Total cost is: ");
 		System.out.println(anOrder.totalCost());

@@ -16,7 +16,7 @@ public class CartTest {
 				87,
 				19.95f
 		);
-		cart.addDigitalVideoDiscs(dvd1);
+		cart.addMedia(dvd1);
 		
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc(
 				"Star Wars",
@@ -25,28 +25,29 @@ public class CartTest {
 				87,
 				24.95f
 		);
-		cart.addDigitalVideoDiscs(dvd2);
+		cart.addMedia(dvd2);
 		
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc(
 				"Aladin",
 				"Animation",
 				18.99f
 		);
-		cart.addDigitalVideoDiscs(dvd3);
+		cart.addMedia(dvd3);
 		
 		DigitalVideoDisc dvd4 = new DigitalVideoDisc(
 				"Alibaba",
 				"Animation",
 				50.0f
 		);
-		cart.addDigitalVideoDiscs(dvd4);
+		cart.addMedia(dvd4);
+		
 		
 		
 		//Test the print method
 		cart.print();
 		
 		//Test the search method by ID
-		cart.searchByID(0);
+		cart.searchByID(1);
 		
 		//Test the search method by Title
 		cart.searchByTitle("Al");
