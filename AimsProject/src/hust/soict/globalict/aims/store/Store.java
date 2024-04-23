@@ -1,7 +1,8 @@
 package hust.soict.globalict.aims.store;
 
-import hust.soict.globalict.aims.disc.DigitalVideoDisc;
 import java.util.LinkedList;
+
+import hust.soict.globalict.aims.media.DigitalVideoDisc;
 
 public class Store {
 	private LinkedList<DigitalVideoDisc> itemsInStore = new LinkedList<DigitalVideoDisc>();

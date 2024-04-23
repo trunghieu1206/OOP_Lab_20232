@@ -1,6 +1,6 @@
 package hust.soict.globalict.test.disc;
 
-import hust.soict.globalict.aims.disc.DigitalVideoDisc;
+import hust.soict.globalict.aims.media.DigitalVideoDisc;
 
 public class TestPassingParameter {
 	public static void main(String args[]) {
