@@ -2,7 +2,7 @@ package hust.soict.globalict.aims.media;
 
 import java.util.*;
 
-public abstract class Media implements Comparable<Media>{
+public abstract class Media{
 	private int id;
 	private String title;
 	private String category;
@@ -71,6 +71,7 @@ public abstract class Media implements Comparable<Media>{
 		return false;
 	}
 	
+	/*
 	public int compareTo(Media media) {
 		if(this.getTitle().compareTo(media.getTitle()) != 0) {
 			return this.getTitle().compareTo(media.getTitle());
@@ -83,5 +84,5 @@ public abstract class Media implements Comparable<Media>{
 			return 1;
 		}
 		return 0;
-	}
+	}*/
 }

@@ -71,5 +71,5 @@ Comparable interface approach?
 
 Suppose the DVDs have a different ordering rule from the other media types, that is by title, then
 decreasing length, then cost. How would you modify your code to allow this?
-	- 
+	- This is not possible
 

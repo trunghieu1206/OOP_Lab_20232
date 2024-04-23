@@ -119,8 +119,6 @@ public class Cart {
 //		Collections.sort(itemsOrdered, COMPARE_BY_TITLE_COST);
 		System.out.println("\nCart successfully sorted by title");
 		
-		
-		
 	}
 	
 	public void sortByCost() {
@@ -128,11 +126,6 @@ public class Cart {
 //		Collections.sort(itemsOrdered, COMPARE_BY_COST_TITLE);
 		System.out.println("\nCart successfully sorted by cost");
 		
-	}
-	
-	public void sort() {
-		Collections.sort(itemsOrdered);
-		System.out.println("\nCart successfully sorted by title");
 	}
 	
 }

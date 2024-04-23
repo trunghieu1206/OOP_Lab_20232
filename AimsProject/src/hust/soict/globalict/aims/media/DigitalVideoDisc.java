@@ -52,21 +52,4 @@ public class DigitalVideoDisc extends Disc implements Playable{
 		System.out.println("Playing DVD: " + this.getTitle());
 		System.out.println("DVD length: " + this.getLength());
 	}
-	
-	public int compareTo(DigitalVideoDisc dvd) {
-		if(this.getTitle().compareTo(dvd.getTitle()) != 0) {
-			return this.getTitle().compareTo(dvd.getTitle());
-		}
-		if(dvd.getLength() - this.getLength() != 0) {
-			return dvd.getLength() - this.getLength();
-		}
-		float compare = this.getCost() - dvd.getCost();
-		if(compare < 0) {
-			return -1;
-		}
-		else if(compare > 0) {
-			return 1;
-		}
-		return 0;
-	}
 }

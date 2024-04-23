@@ -50,7 +50,7 @@ public class CartTest {
 		//Test the print method
 		cart.print();
 		
-		cart.sort();
+		cart.sortByTitle();
 		
 		cart.print();
 		
