@@ -6,7 +6,9 @@ import hust.soict.globalict.aims.media.*;
 public class TestClass {
 
 	public static void main(String[] args) {
-		
+		String a = "hello";
+		a = "hi";
+		System.out.println(a);
 	}
 
 }

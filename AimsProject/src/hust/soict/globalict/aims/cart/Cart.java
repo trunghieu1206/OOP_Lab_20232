@@ -128,4 +128,8 @@ public class Cart {
 		
 	}
 	
+	public int numberOfItems() {
+		return itemsOrdered.size();
+	}
+	
 }

@@ -49,4 +49,27 @@ public class CompactDisc extends Disc implements Playable{
 		}
 		System.out.println("CD finished playing");
 	}
+	
+	public boolean isMatch(String title) {
+		if(this.getTitle().contains(title)) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder("");
+		str.append("CD - ");
+		str.append(this.getTitle());
+		str.append(" - ");
+		str.append(this.getCategory());
+		str.append(" - ");
+		str.append(this.getDirector());
+		str.append(" - ");
+		str.append(this.getLength());
+		str.append(": ");
+		str.append(this.getCost());
+		return str.toString();
+	}
 }

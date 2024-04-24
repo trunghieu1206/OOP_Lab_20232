@@ -26,7 +26,7 @@ public class DigitalVideoDisc extends Disc implements Playable{
 	}
 	
 	public boolean isMatch(String title) {
-		if(this.getTitle().contains(title)) {
+		if(this.getTitle().toLowerCase().contains(title.toLowerCase())) {
 			return true;
 		}
 		return false;
