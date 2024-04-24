@@ -41,22 +41,24 @@ public class Cart {
 	public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
 	//
 	
-	public void addMedia(Media media) {
+	public boolean addMedia(Media media) {
 		if(itemsOrdered.contains(media)) {
 			System.out.println("\nYou already ordered " + media.getTitle() + "!");
-			return;
+			return false;
 		}
 		itemsOrdered.add(media);
 		System.out.println("\nSuccessfully ordered " + media.getTitle());
+		return true;
 	}
 	
-	public void removeMedia(Media media) {
+	public boolean removeMedia(Media media) {
 		if(!itemsOrdered.contains(media)) {
 			System.out.println("\n" + media.getTitle() + " does not exist in the Cart, cannot remove");
-			return;
+			return false;
 		}
-		itemsOrdered.add(media);
+		itemsOrdered.remove(media);
 		System.out.println("\nSuccessfully removed " + media.getTitle() + " from the Cart");
+		return true;
 	}
 	
 	public float totalCost() {
@@ -78,40 +80,22 @@ public class Cart {
 		System.out.println("\n***************************************************");
 	}
 	
-	public void searchByID(int ID) {
+	public Media searchByID(int ID) {
 		for(Media item : itemsOrdered) {
 			if(item.getId() == ID) {
-				System.out.println("\n***********************CART***********************");
-				System.out.println("Searched results for id: " + ID);
-				StringBuilder str = new StringBuilder();
-				str.append("\n");
-				str.append(item.toString());
-				System.out.println(str.toString());
-				System.out.println("***************************************************");
-				return;
+				return item;
 			}
 		}
-		System.out.println("\nNo match found!");
+		return null;
 	}
 	
-	public void searchByTitle(String title) {
-		int found = -1;
-		StringBuilder str = new StringBuilder();
+	public Media searchByTitle(String title) {
 		for(Media item : itemsOrdered) {
 			if(item.isMatch(title)) {
-				found = 1;
-				str.append("\n");
-				str.append(item.toString());
+				return item;
 			}
 		}
-		if(found == -1) {
-			System.out.println("\nNo match found!");
-			return;
-		}
-		System.out.println("\n***********************CART***********************");
-		System.out.print("Searched results for Title: " + title);
-		System.out.println(str.toString());
-		System.out.println("***************************************************");
+		return null;
 	}
 	
 	public void sortByTitle() {
@@ -130,6 +114,12 @@ public class Cart {
 	
 	public int numberOfItems() {
 		return itemsOrdered.size();
+	}
+	
+	public void clearCart() {
+		while(!this.itemsOrdered.isEmpty()) {
+			this.itemsOrdered.remove(0);
+		}
 	}
 	
 }

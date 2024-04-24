@@ -80,6 +80,7 @@ public class Aims{
 		Media searchedItem = null;
 		
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc(
+				1,
 				"The Lion King",
 				"Animation",
 				"Roger Allers",
@@ -89,6 +90,7 @@ public class Aims{
 		store.addMedia(dvd1);
 		
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc(
+				2,
 				"Star Wars",
 				"Science Fiction",
 				"George Lucas",
@@ -98,6 +100,7 @@ public class Aims{
 		store.addMedia(dvd2);
 		
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc(
+				3,
 				"Aladin",
 				"Animation",
 				"Guy Ritchie",
@@ -107,6 +110,7 @@ public class Aims{
 		store.addMedia(dvd3);
 		
 		DigitalVideoDisc dvd4 = new DigitalVideoDisc(
+				4,
 				"Alibaba",
 				"Animation",
 				"Somebody",
@@ -116,6 +120,7 @@ public class Aims{
 		store.addMedia(dvd4);
 		
 		Book book1 = new Book(
+				5,
 				"Treasure Islands",
 				"Adventure",
 				99.9f
@@ -133,20 +138,20 @@ public class Aims{
 				choice = keyboard.nextInt();
 				
 				switch(choice) {
-					case 0:
+					case 0: //exit the program
 						level = "start";
 						
 						break;
-					case 1:
+					case 1: //view store
 						store.print();
 						level = "storeMenu";
 						
 						break;
-					case 2:
-						System.out.println("Please choose ");
+					case 2: //update store 
+						//Not implemented
 						
 						break;
-					case 3:
+					case 3: //see current cart
 						cart.print();
 						level = "cartMenu";
 						
@@ -162,10 +167,10 @@ public class Aims{
 				choice = keyboard.nextInt();
 				
 				switch(choice) {
-					case 0:
+					case 0: //back to main menu
 						level = "menu";
 						break;
-					case 1:
+					case 1: //see a media's details 
 						System.out.println("Please enter the title you want to search: ");
 						String userChooseTitle1 = keyboard.nextLine();
 						userChooseTitle1 = keyboard.nextLine();
@@ -183,25 +188,35 @@ public class Aims{
 						}
 						
 						break;
-					case 2:
+					case 2: //add a media to Cart
 						System.out.println("Please enter the title of the Media to add to Cart");
 						keyboard.nextLine();
 						String userChooseTitle2 = keyboard.nextLine();
 						searchedItem = store.search(userChooseTitle2);
 						
+						//if Media exists in store
 						if(searchedItem != null) {
-							cart.addMedia(searchedItem);
-							System.out.println("Item successfully added to Cart!");
-							System.out.println("Cart now contains " + cart.numberOfItems() + " item(s)");
-							level = "storeMenu";
+							//if Media has not been in the Cart
+							if(cart.addMedia(searchedItem)) {
+								System.out.println("Item successfully added to Cart!");
+								System.out.println("Cart now contains " + cart.numberOfItems() + " item(s)");
+								level = "storeMenu";
+							}
+							//if Media has been put in the Cart before
+							else {
+								System.out.println("Cannot order this Item");
+								level = "storeMenu";
+							}
+							
 						}
+						//if Media not exists in store
 						else {
 							System.out.println("Cannot find any items with the title '" + userChooseTitle2 + "'!");
 							level = "storeMenu";
 						}
 						
 						break;
-					case 3:
+					case 3: //Play a media
 						System.out.println("Please enter the title of the Media to play: ");
 						keyboard.nextLine();
 						String userChooseTitle3 = keyboard.nextLine();
@@ -217,15 +232,16 @@ public class Aims{
 
 						}
 						else  if(searchedItem != null){
-							System.out.println("\n" + searchedItem.getTitle() + " is neither DVD or CD, cannot play!");
+							System.out.println("\n" + searchedItem.getTitle() + " is neither DVD nor CD, cannot play!");
 						}
 						else {
 							System.out.println("\nCannot find any item with title '" + userChooseTitle3 + "'!");
 						}
 						
 						break;
-					case 4:
+					case 4: //See current Cart
 						cart.print();
+						level = "cartMenu";
 						
 						break;
 					default:
@@ -239,28 +255,27 @@ public class Aims{
 				choice = keyboard.nextInt();
 				
 				switch(choice) {
-					case 0:
+					case 0: //back to storeMenu
 						level = "storeMenu";
 						
 						break;
-					case 1:
-						System.out.println("Please enter the title of the Media appearing on your screen to confirm adding to Cart");
-						keyboard.nextLine();
-						String userChooseTitle = keyboard.nextLine();
+					case 1: //Add this Media to Cart
+						//if we are at this level then the Media definitely exists in Store
 						
-						if(searchedItem.getTitle().equals(userChooseTitle)) {
-							cart.addMedia(searchedItem);
+						//if Media has not been in the Cart
+						if(cart.addMedia(searchedItem)) {
 							System.out.println("Item successfully added to Cart!");
 							System.out.println("Cart now contains " + cart.numberOfItems() + " item(s)");
 							level = "storeMenu";
 						}
+						//if Media has been put in the Cart before
 						else {
-							System.out.println("Title is not correct");
+							System.out.println("Cannot order this Item");
 							level = "storeMenu";
 						}
 						
 						break;
-					case 2:
+					case 2: //Play this Media
 						if(searchedItem instanceof DigitalVideoDisc) {
 							DigitalVideoDisc playableItem = (DigitalVideoDisc) searchedItem;
 							playableItem.play();
@@ -284,29 +299,62 @@ public class Aims{
 				choice = keyboard.nextInt();
 				
 				switch(choice) {
-					case 0:
+					case 0: //back to main menu
 						level = "menu";
 						
 						break;
-					case 1:
+					case 1: //filter Cart
 						chooseFilterOptions();
 						choice = keyboard.nextInt();
 						
+						//filter by ID
 						if(choice == 1) {
+							System.out.println("Enter the ID you want to filter: ");
 							int userChooseID = keyboard.nextInt();
-							cart.searchByID(userChooseID);
+							
+							Media resultItem = cart.searchByID(userChooseID);
+							if(resultItem != null) {
+								System.out.println("\n***********************CART***********************");
+								System.out.print("Searched results for id: " + userChooseID);
+								StringBuilder str = new StringBuilder();
+								str.append("\n");
+								str.append(resultItem.toString());
+								System.out.println(str.toString());
+								System.out.println("***************************************************");
+							}
+							else {
+								System.out.println("\nNo match found for id '" + userChooseID + "'!");
+							}
 						}
+						//filter by Title
 						else if(choice == 2) {
+							System.out.println("Enter the title you want to filter: ");
 							keyboard.nextLine();
 							String userChooseTitle = keyboard.nextLine();
-							cart.searchByTitle(userChooseTitle);
+							
+							Media resultItem = cart.searchByTitle(userChooseTitle);
+							
+							//if Media exists in Cart
+							if(resultItem != null) {
+								StringBuilder str = new StringBuilder();
+								str.append("\n");
+								str.append(resultItem.toString());
+								System.out.println("\n***********************CART***********************");
+								System.out.print("Searched results for Title: " + userChooseTitle);
+								System.out.println(str.toString());
+								System.out.println("***************************************************");
+							}
+							//if Media does not exist in Cart
+							else {
+								System.out.println("\nNo match found for title '" + userChooseTitle + "'!");
+							}
 						}
 						else {
 							System.out.println("\nInvalid choice");
 						}
 						
 						break;
-					case 2:
+					case 2: //sort Cart
 						chooseSortOptions();
 						choice = keyboard.nextInt();
 						
@@ -321,13 +369,59 @@ public class Aims{
 						}
 						
 						break;
-					case 3:
+					case 3: //Remove Media from Cart
+						
 						System.out.println("Enter the title of the Media you want to remove: ");
 						keyboard.nextLine();
-						String userChooseTitle = keyboard.nextLine();
+						String userChooseTitle1 = keyboard.nextLine();
+						Media removeItem = cart.searchByTitle(userChooseTitle1);
+						
+						//if Media to be removed exists in Cart
+						if(removeItem != null) {
+							cart.removeMedia(removeItem);
+							
+						}
+						//if Media to be removed does not exists in Cart
+						else {
+							System.out.println("\nCannot find Media with title '" + userChooseTitle1 + "'!");
+						}
+						
+						break;
+					case 4: //Play a Media in Cart
+						System.out.println("Enter the title of the Media to play: ");
+						keyboard.nextLine();
+						String userChooseTitle2 = keyboard.nextLine();
+						Media resultItem = cart.searchByTitle(userChooseTitle2);
+						
+						if(resultItem instanceof DigitalVideoDisc) {
+							DigitalVideoDisc playableItem = (DigitalVideoDisc) resultItem;
+							playableItem.play();
+						}
+						else if(resultItem instanceof CompactDisc) {
+							CompactDisc playableItem = (CompactDisc) resultItem;
+							playableItem.play();
+						}
+						else if(resultItem != null){
+							System.out.println("\n" + resultItem.getTitle() + " is not a DVD or a CD, cannot play!");
+						}
+						else {
+							System.out.println("\n" + userChooseTitle2 + " cannot be found in the Cart");
+						}
+						
+						break;
+					case 5: //Place order 
+						System.out.println("Your order has been placed");
+						cart.print();
+						cart.clearCart();
+						
+						break;
+					default:
+						System.out.println("Invalid choice, please choose again");
+						break;
 				}
 			}
 		} while(choice != 0 || !level.equals("start"));
+		
 		System.out.println("\nApp exitted");
 		keyboard.close();
 		System.exit(0);;
