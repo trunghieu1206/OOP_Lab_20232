@@ -47,4 +47,16 @@ public class Store {
 		}
 		return null;
 		}
+	
+	/**Search for available Media inside the Store
+	@return true if Media is available in the Store, false otherwise
+	*/	
+	public Media search(int id) {
+		for(Media item: itemsInStore) {
+			if(item.getId() == id) {
+				return item;
+			}
+		}
+		return null;
+	}
 }
