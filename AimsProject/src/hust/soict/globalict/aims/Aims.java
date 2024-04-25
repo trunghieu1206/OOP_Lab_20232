@@ -76,8 +76,106 @@ public class Aims{
 		System.out.println("--------------------------------");
 		System.out.println("1. Add a Media");
 		System.out.println("2. Remove a Media");
+		System.out.println("0. Back");
 		System.out.println("--------------------------------");
 		System.out.println("Please choose a number 1-2");
+	}
+	
+	public static void printAddOptions() {
+		System.out.println("Enter the type of Media you want to add to Store");
+		System.out.println("--------------------------------");
+		System.out.println("1. DVD");
+		System.out.println("2. CD");
+		System.out.println("3. Book");
+		System.out.println("--------------------------------");
+		System.out.println("Please choose a number 1-2-3");
+	}
+	
+	public static void addDVD(Scanner keyboard, Store store) {
+		System.out.println("Enter the ID of the DVD: ");
+		int id = keyboard.nextInt();
+		keyboard.nextLine();
+		
+		if(store.search(id) != null) {
+			System.out.println("Media with id '" + id + "' already exists in Store, cannot add!");
+			return;
+		}
+		
+		System.out.println("Enter the title of the DVD: ");
+		String title = keyboard.nextLine();
+		
+		System.out.println("Enter the category of the DVD: ");
+		String category = keyboard.nextLine();
+		
+		System.out.println("Enter the director of the DVD: ");
+		String director = keyboard.nextLine();
+		
+		System.out.println("Enter the length of the DVD: ");
+		int length = keyboard.nextInt();
+		
+		System.out.println("Enter the cost of the DVD: ");
+		float cost = keyboard.nextFloat();
+		
+		Media toAddMedia = new DigitalVideoDisc(id, title, category, director, length, cost);
+		store.addMedia(toAddMedia);
+	}
+	
+	public static void addCD(Scanner keyboard, Store store) {
+		System.out.println("Enter the ID of the CD: ");
+		int id = keyboard.nextInt();
+		keyboard.nextLine();
+		
+		if(store.search(id) != null) {
+			System.out.println("Media with id '" + id + "' already exists in Store, cannot add!");
+			return;
+		}
+		
+		System.out.println("Enter the title of the CD: ");
+		String title = keyboard.nextLine();
+		
+		System.out.println("Enter the category of the CD: ");
+		String category = keyboard.nextLine();
+		
+		System.out.println("Enter the director of the CD: ");
+		String director = keyboard.nextLine();
+		
+		System.out.println("Enter the length of the CD: ");
+		int length = keyboard.nextInt();
+		keyboard.nextLine();
+		
+		System.out.println("Enter the cost of the CD: ");
+		float cost = keyboard.nextFloat();
+		keyboard.nextLine();
+		
+		System.out.println("Enter the artist of the CD: ");
+		String artist = keyboard.nextLine();
+		
+		Media toAddMedia = new CompactDisc(id, title, category, director, length, cost, artist);
+		store.addMedia(toAddMedia);
+	}
+	
+	public static void addBook(Scanner keyboard, Store store) {
+		System.out.println("Enter the ID of the Book: ");
+		int id = keyboard.nextInt();
+		keyboard.nextLine();
+		
+		if(store.search(id) != null) {
+			System.out.println("Media with id '" + id + "' already exists in Store, cannot add!");
+			return;
+		}
+		
+		System.out.println("Enter the title of the Book: ");
+		String title = keyboard.nextLine();
+		
+		System.out.println("Enter the category of the Book: ");
+		String category = keyboard.nextLine();
+		
+		System.out.println("Enter the cost of the Book: ");
+		float cost = keyboard.nextFloat();
+		keyboard.nextLine();
+		
+		Media toAddMedia = new Book(id, title, category, cost);
+		store.addMedia(toAddMedia);
 	}
 	
 	public static void main(String[] args) {
@@ -156,9 +254,8 @@ public class Aims{
 						level = "storeMenu";
 						
 						break;
-					case 2: //update store 
-						chooseUpdateOptions();
-						
+					case 2: //update Store
+						level = "updateStore";
 						
 						break;
 					case 3: //see current cart
@@ -211,19 +308,16 @@ public class Aims{
 							if(cart.addMedia(searchedItem)) {
 								System.out.println("Item successfully added to Cart!");
 								System.out.println("Cart now contains " + cart.numberOfItems() + " item(s)");
-								level = "storeMenu";
 							}
 							//if Media has been put in the Cart before
 							else {
 								System.out.println("Cannot order this Item");
-								level = "storeMenu";
 							}
 							
 						}
 						//if Media not exists in store
 						else {
 							System.out.println("Cannot find any items with the title '" + userChooseTitle2 + "'!");
-							level = "storeMenu";
 						}
 						
 						break;
@@ -262,6 +356,49 @@ public class Aims{
 				}
 			}
 			else if(level.equals("updateStore")) {
+				chooseUpdateOptions();
+				choice = keyboard.nextInt();
+				
+				switch(choice) {
+					case 0: //back to main menu
+						level = "menu";
+						
+						break;
+					case 1: //add a media
+						printAddOptions();
+						choice = keyboard.nextInt();
+						
+						//if add DVD
+						if(choice == 1) {
+							addDVD(keyboard,store);
+							
+						} 
+						else if(choice == 2) {
+							addCD(keyboard, store);
+						}
+						else if(choice == 3) {
+							addBook(keyboard,store);
+						}
+						
+						break;
+					case 2: //remove a media
+						System.out.println("Enter the title of the Media you want to remove from Store: ");
+						keyboard.nextLine();
+						String userChooseTitle = keyboard.nextLine();
+						
+						searchedItem = store.search(userChooseTitle);
+						if(searchedItem != null) {
+							store.removeMedia(searchedItem);
+						}
+						else {
+							System.out.println("\nCannot find any Media with title '" + userChooseTitle + "'!");
+						}
+						
+						break;
+					default:
+						System.out.println("Invalid choice, please choose again");
+						break;
+				}
 				
 			}
 			else if(level.equals("mediaMenu")) {

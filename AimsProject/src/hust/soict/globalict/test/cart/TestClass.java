@@ -7,8 +7,7 @@ public class TestClass {
 
 	public static void main(String[] args) {
 		String a = "hello";
-		a = "hi";
-		System.out.println(a);
+		System.out.println(a.charAt(a.length() - 1));
 	}
 
 }
