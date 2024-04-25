@@ -71,6 +71,15 @@ public class Aims{
 		System.out.println("Please choose a number 1-2");
 	}
 	
+	public static void chooseUpdateOptions() {
+		System.out.println("Options: ");
+		System.out.println("--------------------------------");
+		System.out.println("1. Add a Media");
+		System.out.println("2. Remove a Media");
+		System.out.println("--------------------------------");
+		System.out.println("Please choose a number 1-2");
+	}
+	
 	public static void main(String[] args) {
 		Store store = new Store();
 		Cart cart = new Cart();
@@ -148,7 +157,8 @@ public class Aims{
 						
 						break;
 					case 2: //update store 
-						//Not implemented
+						chooseUpdateOptions();
+						
 						
 						break;
 					case 3: //see current cart
@@ -169,6 +179,7 @@ public class Aims{
 				switch(choice) {
 					case 0: //back to main menu
 						level = "menu";
+						
 						break;
 					case 1: //see a media's details 
 						System.out.println("Please enter the title you want to search: ");
@@ -250,6 +261,9 @@ public class Aims{
 						break;
 				}
 			}
+			else if(level.equals("updateStore")) {
+				
+			}
 			else if(level.equals("mediaMenu")) {
 				mediaDetailsMenu();
 				choice = keyboard.nextInt();
@@ -266,12 +280,12 @@ public class Aims{
 						if(cart.addMedia(searchedItem)) {
 							System.out.println("Item successfully added to Cart!");
 							System.out.println("Cart now contains " + cart.numberOfItems() + " item(s)");
-							level = "storeMenu";
+							
 						}
 						//if Media has been put in the Cart before
 						else {
 							System.out.println("Cannot order this Item");
-							level = "storeMenu";
+							
 						}
 						
 						break;
