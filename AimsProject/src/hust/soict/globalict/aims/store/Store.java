@@ -24,6 +24,10 @@ public class Store {
 		System.out.println("\n" + media.getTitle() + " successfully removed from the store!");
 	}	
 	
+	public ArrayList<Media> getItemsInStore(){
+		return (ArrayList) itemsInStore;
+	}
+	
 	/**
 	Print all available Medias in the Store
 	*/

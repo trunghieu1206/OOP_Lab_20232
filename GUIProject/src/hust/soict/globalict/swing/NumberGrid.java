@@ -12,6 +12,10 @@ public class NumberGrid extends JFrame {
 	private JTextField tfDisplay;
 
 	public NumberGrid() {
+		/*
+		 For example of layouts in java swing visit:
+		 https://shareprogramming.net/tong-hop-cac-layout-trong-java-swing/
+		 */
 		tfDisplay = new JTextField();
 		tfDisplay.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		
@@ -54,20 +58,21 @@ public class NumberGrid extends JFrame {
 	
 	public static void main(String[] args) {
 		new NumberGrid();
+//		NumberGrid a = new NumberGrid();
 	}
 	
 	private class ButtonListener implements ActionListener {
 		@Override
-		public void  actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent e) {
 			String button = e.getActionCommand();
 			if(button.charAt(0) >= '0' && button.charAt(0) <= '9') {
 				tfDisplay.setText(tfDisplay.getText() + button);
 			}
 			else if(button.equals("DEL")) {
-				//handles the DEL case
+				tfDisplay.setText(tfDisplay.getText().substring(0, tfDisplay.getText().length() -1));
 			}
 			else {
-				//handles the C case
+				tfDisplay.setText("");
 			}
 		}
 	}
