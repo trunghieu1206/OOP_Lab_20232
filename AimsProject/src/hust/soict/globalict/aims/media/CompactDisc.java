@@ -2,6 +2,8 @@ package hust.soict.globalict.aims.media;
 
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 public class CompactDisc extends Disc implements Playable{
 	private String artist;
 	List<Track> tracks = new ArrayList<Track>();
@@ -41,13 +43,29 @@ public class CompactDisc extends Disc implements Playable{
 	}
 	
 	public void play() {
-		System.out.println("\nCD is containing " + tracks.size());
-		System.out.println("Playing each track one by one");
-		for(Track track : tracks) {
+		StringBuilder str = new StringBuilder("");
+		str.append("\nCD is containing ");
+		str.append(this.tracks.size());
+		str.append(" tracks");
+		
+		if(this.tracks.size() == 0) {
+			JOptionPane.showMessageDialog(null, str);
+			return;
+		}
+		
+		str.append("\nPlaying each track one by one");
+		
+		for(Track track : this.tracks) {
+			str.append("\n*Playing track: ");
+			str.append(track.getTitle());
+			str.append(track.getInformationToPlay());
+			
 			System.out.println("*Playing track: " + track.getTitle());
 			track.play();
 		}
-		System.out.println("CD finished playing");
+		
+		str.append("\nCD finished playing");
+		JOptionPane.showMessageDialog(null, str);
 	}
 	
 	public boolean isMatch(String title) {
