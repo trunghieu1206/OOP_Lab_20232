@@ -13,6 +13,7 @@ public class PainterController {
 
     @FXML
     private Pane drawingAreaPane;
+    private int choice = 1;
 
     @FXML
     void clearButtonPressed(ActionEvent event) {
@@ -21,10 +22,32 @@ public class PainterController {
 
     @FXML
     void drawingAreaMouseDragged(MouseEvent event) {
-    	Circle newCircle = new Circle(event.getX(), event.getY(), 4, Color.BLACK);
-    	drawingAreaPane.getChildren().add(newCircle);
     	
+    	// if user choose to draw
+    	if(choice == 1) {
+
+    		Circle newCircle = new Circle(event.getX(), event.getY(), 4, Color.BLACK);
+        	drawingAreaPane.getChildren().add(newCircle);
+    	}
+    	// if user choose to erase
+    	else {
+    		Circle newCircle = new Circle(event.getX(), event.getY(), 16, Color.WHITE);
+        	drawingAreaPane.getChildren().add(newCircle);
+    	}
     }
+    
+	@FXML
+	void chooseDraw(ActionEvent event) {
+		this.choice = 1;
+	}
+
+	@FXML
+	void chooseErase(ActionEvent event) {
+		this.choice = 0;
+	}
+    
+    
+    
 
 }
 
