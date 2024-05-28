@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 public class ViewStoreController {
 	private Store store;
@@ -36,7 +37,7 @@ public class ViewStoreController {
 			try {
 				FXMLLoader fxmlLoader = new FXMLLoader();
 				fxmlLoader.setLocation(getClass().getResource(ITEM_FXML_FILE_PATH));
-				ItemController itemController = new ItemController(cart);
+				ItemController itemController = new ItemController(store, cart);
 				fxmlLoader.setController(itemController);
 				AnchorPane anchorPane = new AnchorPane();
 				

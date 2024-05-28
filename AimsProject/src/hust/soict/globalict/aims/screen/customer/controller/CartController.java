@@ -19,11 +19,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 public class CartController {
 	private Cart cart;
@@ -52,26 +55,91 @@ public class CartController {
     
     @FXML
     private Button btnPlay;
+    
+    @FXML
+    private Label placeOrderMessage;
+    
+    @FXML
+    private Label removeMessage;
+    
+    @FXML
+    private TextField tfFilter;
+    
+    @FXML
+    private RadioButton radioBtnFilterId;
+    
+    @FXML
+    private RadioButton radioBtnFilterTitle;
 
 
     @FXML
     private TableColumn<Media, String> colMediaCategory;
     
     @FXML
-    void btnPlayPressed(ActionEvent event) {
+    void filter(ActionEvent event) {
     	
     }
+    
+    @FXML
+    void btnPlayPressed(ActionEvent event) {
+    	Media media = tblMedia.getSelectionModel().getSelectedItem();
+    	try {
+			final String PLAY_FXML_FILE_PATH = "/hust/soict/globalict/aims/screen/customer/view/PlayMedia.fxml";
+    		
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(PLAY_FXML_FILE_PATH));
+    		fxmlLoader.setController(new PlayMediaController(store, cart, media));
+    		Parent root = fxmlLoader.load();
+    		Stage dialog = (Stage)((Node) event.getSource()).getScene().getWindow();
+    		dialog.setScene(new Scene(root));
+    		dialog.setTitle("Media playing");
+    		dialog.show();
+    		
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+    }
+    
+    @FXML
+    void btnRefreshPressed(ActionEvent event) {
+    	try {
+    		final String CART_FXML_FILE_PATH = "/hust/soict/globalict/aims/screen/customer/view/Cart.fxml";
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(CART_FXML_FILE_PATH));
+    		fxmlLoader.setController(new CartController(store, cart));
+    		Parent root = fxmlLoader.load();
+    		Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+    		stage.setScene(new Scene(root));
+    		stage.setTitle("Cart");
+    		stage.show();
+ 
+    	} catch (IOException e){
+    		e.printStackTrace();
+    	}
+    }
+
 
     @FXML
     void btnRemovePressed(ActionEvent event) {
     	Media media = tblMedia.getSelectionModel().getSelectedItem();
     	cart.removeMedia(media);
+    	removeMessage.setText("You have successfully removed " + media.getTitle() + " from Cart, please refreash!");
+    	removeMessage.setVisible(true);
+    }
+    
+    
+    
+    @FXML
+    void placeOrderPressed(ActionEvent event) {
+    	cart.clearCart();
+    	placeOrderMessage.setText("You have successfully ordered, please refresh the page!");
+    	placeOrderMessage.setVisible(true);
+    	
     }
     
     public CartController(Store store, Cart cart) {
     	this.store = store;
 		this.cart = cart;
 	}
+    
 	
 	public void initialize() {
 		colMediaId.setCellValueFactory(new PropertyValueFactory<Media, Integer>("id"));
@@ -96,10 +164,23 @@ public class CartController {
 				updateButtonBar(newValue);
 			}
 		});
+		
+		tfFilter.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				showFilteredMedia(newValue);
+				
+			}
+		});
+		
+		placeOrderMessage.setVisible(false);
+		costLabel.setText(this.cart.totalCost()+ " $");
+		removeMessage.setVisible(false);
 	}
+	
 	void updateButtonBar(Media media) {
 		if(media == null) {
-			btnPlay.setVisible(false);
+			btnPlay.setVisible(true);
 			btnRemove.setVisible(false);
 			
 		}
@@ -112,6 +193,10 @@ public class CartController {
 				btnPlay.setVisible(false);
 			}
 		}
+	}
+	
+	void showFilteredMedia(String media) {
+		
 	}
 	
 	@FXML
@@ -130,4 +215,3 @@ public class CartController {
     	}
     }
 }
-

@@ -16,10 +16,11 @@ public class Track implements Playable{
 		return length;
 	}
 	
-	public void play() {
-		System.out.println("Playing DVD: " + this.getTitle());
-		System.out.println("DVD length: " + this.getLength());
-	}
+	public String play() {
+		StringBuilder str = new StringBuilder("");
+		str.append("Playing " + this.getTitle());
+		return str.toString();
+		}
 	
 	public String getInformationToPlay() {
 		StringBuilder str = new StringBuilder("");

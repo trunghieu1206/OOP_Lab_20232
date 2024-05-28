@@ -42,7 +42,7 @@ public class CompactDisc extends Disc implements Playable{
 		return sumLength;	
 	}
 	
-	public void play() {
+	public String play() {
 		StringBuilder str = new StringBuilder("");
 		str.append("\nCD is containing ");
 		str.append(this.tracks.size());
@@ -50,7 +50,7 @@ public class CompactDisc extends Disc implements Playable{
 		
 		if(this.tracks.size() == 0) {
 			JOptionPane.showMessageDialog(null, str);
-			return;
+			return str.toString();
 		}
 		
 		str.append("\nPlaying each track one by one");
@@ -65,7 +65,7 @@ public class CompactDisc extends Disc implements Playable{
 		}
 		
 		str.append("\nCD finished playing");
-		JOptionPane.showMessageDialog(null, str);
+		return str.toString();
 	}
 	
 	public boolean isMatch(String title) {

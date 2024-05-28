@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -44,13 +43,13 @@
                </padding>
                <children>
                   <Label text="Filter" />
-                  <TextField />
-                  <RadioButton mnemonicParsing="false" selected="true" text="By ID">
+                  <TextField fx:id="tfFilter" onKeyTyped="#filter" />
+                  <RadioButton fx:id="radioBtnFilterId" mnemonicParsing="false" selected="true" text="By ID">
                      <toggleGroup>
                         <ToggleGroup fx:id="filterCategory" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="By Title" toggleGroup="$filterCategory" />
+                  <RadioButton fx:id="radioBtnFilterTitle" mnemonicParsing="false" text="By Title" toggleGroup="$filterCategory" />
                </children>
             </HBox>
             <TableView fx:id="tblMedia" prefHeight="301.0" prefWidth="984.0">
@@ -66,6 +65,14 @@
                   <Insets top="10.0" />
                </padding>
                <children>
+                  <Label fx:id="removeMessage" text="RemoveMessage">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
                   <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#btnPlayPressed" prefWidth="60.0" text="Play" />
                   <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#btnRemovePressed" prefWidth="80.0" text="Remove" />
                </children>
@@ -90,9 +97,22 @@
                   </Label>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" style="-fx-background-color: #004cff;" text="Place Order" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#placeOrderPressed" style="-fx-background-color: #004cff;" text="Place Order" textFill="WHITE">
                <font>
                   <Font size="24.0" />
+               </font>
+            </Button>
+            <Label fx:id="placeOrderMessage" text="Message">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#btnRefreshPressed" text="Refresh">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="900.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
                </font>
             </Button>
          </children>

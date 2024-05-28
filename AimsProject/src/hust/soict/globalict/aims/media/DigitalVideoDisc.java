@@ -50,12 +50,12 @@ public class DigitalVideoDisc extends Disc implements Playable{
 		return str.toString();
 	}
 	
-	public void play() {
+	public String play() {
 		StringBuilder str = new StringBuilder("");
 		str.append("Playing DVD: ");
 		str.append(this.getTitle());
 		str.append("\nDVD length: ");
 		str.append(this.getLength());
-		JOptionPane.showMessageDialog(null, str);
+		return str.toString();
 	}
 }
