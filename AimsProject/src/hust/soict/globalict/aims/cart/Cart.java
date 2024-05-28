@@ -1,6 +1,8 @@
 package hust.soict.globalict.aims.cart;
 
 import hust.soict.globalict.aims.media.*;
+import javafx.collections.ObservableList;
+
 import java.util.*;
 
 class MediaComparatorByCostTitle implements Comparator<Media>{
@@ -120,6 +122,10 @@ public class Cart {
 		while(!this.itemsOrdered.isEmpty()) {
 			this.itemsOrdered.remove(0);
 		}
+	}
+	
+	public ArrayList<Media> getItemsOrdered(){
+		return (ArrayList) itemsOrdered;
 	}
 	
 }

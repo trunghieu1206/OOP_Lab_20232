@@ -1,6 +1,8 @@
 package hust.soict.globalict.aims.screen.customer.controller;
 
 import hust.soict.globalict.aims.cart.Cart;
+import hust.soict.globalict.aims.media.CompactDisc;
+import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.media.Playable;
 import javafx.event.ActionEvent;
@@ -24,6 +26,9 @@ public class ItemController {
 
     @FXML
     private Label lblCost;
+    
+    @FXML
+    private Label lblType;
 
     @FXML
     void btnAddToCartClicked(ActionEvent event) {
@@ -37,6 +42,15 @@ public class ItemController {
     
     public void setData(Media media) {
     	this.media = media;
+    	if(media instanceof DigitalVideoDisc) {
+    		lblType.setText("(DVD)");
+    	}
+    	else if(media instanceof CompactDisc) {
+    		lblType.setText("(CD)");
+    	}
+    	else{
+    		lblType.setText("(Book)");
+    	}
     	lblTitle.setText(media.getTitle());
     	lblCost.setText("$ " + media.getCost());
     	if(media instanceof Playable) {
@@ -44,7 +58,7 @@ public class ItemController {
     	}
     	else {
     		btnPlay.setVisible(false);
-    		HBox.setMargin(btnAddToCart, new Insets(0, 0, 0, 60));
+    		HBox.setMargin(btnAddToCart, new Insets(0, 0, 0, 100));
     	}
     }
     

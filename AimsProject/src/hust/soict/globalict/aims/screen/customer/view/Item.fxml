@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="350.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="CENTER" layoutX="16.0" layoutY="-1.0" prefHeight="175.0" prefWidth="305.0">
          <children>
-            <Label fx:id="lblTitle" prefHeight="50.0" prefWidth="305.0" text="Title" />
-            <Label fx:id="lblCost" prefHeight="50.0" prefWidth="305.0" text="Cost" />
+            <Label fx:id="lblType" prefHeight="40.0" prefWidth="305.0" text="Label" />
+            <Label fx:id="lblTitle" prefHeight="40.0" prefWidth="305.0" text="Title" />
+            <Label fx:id="lblCost" prefHeight="40.0" prefWidth="305.0" text="Cost" />
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="305.0" spacing="20.0">
                <children>
                   <Button fx:id="btnAddToCart" mnemonicParsing="false" onAction="#btnAddToCartClicked" prefHeight="50.0" prefWidth="305.0" text="Add to Cart" />
