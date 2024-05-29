@@ -58,12 +58,22 @@ public class PlayMediaController {
 		MediaTitle.setText("Now on the Playing screen");
 		
 		if(media instanceof DigitalVideoDisc) {
-			DigitalVideoDisc newMedia = (DigitalVideoDisc) media;
-			mediaContent.setText(newMedia.play());
+			try {
+				DigitalVideoDisc newMedia = (DigitalVideoDisc) media;
+				mediaContent.setText(newMedia.play());
+			}
+			catch (Exception e){
+				System.err.println("Cannot play, DVD contains non-positive length");
+			}
 		}
 		else {
-			CompactDisc newMedia = (CompactDisc) media;
-			mediaContent.setText(newMedia.play());
+			try {
+				CompactDisc newMedia = (CompactDisc) media;
+				mediaContent.setText(newMedia.play());
+			}
+			catch (Exception e) {
+				
+			}
 		}
 	}
 }

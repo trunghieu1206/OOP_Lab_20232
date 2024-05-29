@@ -9,8 +9,11 @@ import hust.soict.globalict.aims.media.Playable;
 import hust.soict.globalict.aims.store.Store;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,6 +34,7 @@ import javax.swing.JOptionPane;
 public class CartController {
 	private Cart cart;
 	private Store store;
+	private int choice = 1; //1 means user is choosing to filter by ID
 	
     @FXML
     private TableColumn<Media, String> colMediaTitle;
@@ -70,14 +74,20 @@ public class CartController {
     
     @FXML
     private RadioButton radioBtnFilterTitle;
-
-
+    
     @FXML
     private TableColumn<Media, String> colMediaCategory;
     
     @FXML
-    void filter(ActionEvent event) {
-    	
+    void radioBtnFilterIdPressed(ActionEvent event) {
+    	this.choice = 1;
+    	System.out.println("1");
+    }
+    
+    @FXML
+    void radioBtnFilterTitlePressed(ActionEvent event) {
+    	this.choice = 0;
+    	System.out.println("0");
     }
     
     @FXML
@@ -150,10 +160,10 @@ public class CartController {
 		
 		colMediaCost.setCellValueFactory(new PropertyValueFactory<Media, Float>("cost"));
 		
-		if(cart.getItemsOrdered() != null) {
-			ObservableList<Media> oListMedia = FXCollections.observableArrayList(cart.getItemsOrdered());
-			tblMedia.setItems(oListMedia);
-		}
+		// Add cart items into ObservableList
+		ObservableList<Media> oListMedia = FXCollections.observableArrayList(cart.getItemsOrdered());
+		tblMedia.setItems(oListMedia);
+
 		
 		btnPlay.setVisible(true);
 		btnRemove.setVisible(true);
@@ -165,13 +175,52 @@ public class CartController {
 			}
 		});
 		
-		tfFilter.textProperty().addListener(new ChangeListener<String>() {
-			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				showFilteredMedia(newValue);
-				
-			}
-		});
+		//Wrap the ObservableList in a FilteredList (initially displays all items)
+		FilteredList<Media> filteredData = new FilteredList<>(oListMedia, b -> true);
+		
+		if(this.choice == 0) {
+			//filter by title
+			tfFilter.textProperty().addListener((observable, oldValue, newValue) -> {
+				filteredData.setPredicate(media -> {
+					// if filter text is empty then displays all
+					if(newValue == null || newValue.isEmpty()) {
+						return true;
+					}
+					
+					if(media.isMatch(newValue.toLowerCase())) {
+						return true;
+					}
+					return false;
+				});
+			});
+		}
+		else {
+			//filter by id
+			tfFilter.textProperty().addListener((observable, oldValue, newValue) -> {
+				filteredData.setPredicate(media -> {
+					// if filter text is empty then displays all
+					if(newValue == null || newValue.isEmpty()) {
+						return true;
+					}
+					
+					if(media.getId() == Integer.parseInt(newValue)) {
+						return true;
+					}
+					return false;
+				});
+			});
+		}
+		
+		
+		//Wrap the filteredList in a sortedList
+		SortedList<Media> sortedData = new SortedList<>(filteredData);
+		
+		//Bind the SortedList comparator to the TableView comparator
+		sortedData.comparatorProperty().bind(tblMedia.comparatorProperty());
+		
+		//Add sorted (and filtered) items into the table
+		tblMedia.setItems(sortedData);
+		
 		
 		placeOrderMessage.setVisible(false);
 		costLabel.setText(this.cart.totalCost()+ " $");
@@ -196,7 +245,7 @@ public class CartController {
 	}
 	
 	
-	void showFilteredMedia(String media) {
+	void showFilteredMedia(String searchValue) {
 		
 	}
 	

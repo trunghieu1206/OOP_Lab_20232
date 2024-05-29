@@ -70,7 +70,7 @@ public class TestViewStoreScreen extends Application{
 				"Alibaba",
 				"Animation",
 				"Somebody",
-				34,
+				-1,
 				50.0f
 		);
 		store.addMedia(dvd4);

@@ -5,6 +5,8 @@ import javafx.collections.ObservableList;
 
 import java.util.*;
 
+import javax.naming.LimitExceededException;
+
 class MediaComparatorByCostTitle implements Comparator<Media>{
 	public int compare(Media media1, Media media2) {
 		float compare = media1.getCost() - media2.getCost();
@@ -44,13 +46,13 @@ public class Cart {
 	//
 	
 	public boolean addMedia(Media media) {
-		if(itemsOrdered.contains(media)) {
-			System.out.println("\nYou already ordered " + media.getTitle() + "!");
-			return false;
-		}
-		itemsOrdered.add(media);
-		System.out.println("\nSuccessfully ordered " + media.getTitle());
-		return true;
+			if(itemsOrdered.contains(media)) {
+				System.out.println("\nYou already ordered " + media.getTitle() + "!");
+				return false;
+			}
+			itemsOrdered.add(media);
+			System.out.println("\nSuccessfully ordered " + media.getTitle());
+			return true;
 	}
 	
 	public boolean removeMedia(Media media) {
