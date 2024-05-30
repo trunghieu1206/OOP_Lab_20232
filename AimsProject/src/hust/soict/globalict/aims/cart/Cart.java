@@ -1,7 +1,11 @@
 package hust.soict.globalict.aims.cart;
 
 import hust.soict.globalict.aims.media.*;
+import javafx.collections.ObservableList;
+
 import java.util.*;
+
+import javax.naming.LimitExceededException;
 
 class MediaComparatorByCostTitle implements Comparator<Media>{
 	public int compare(Media media1, Media media2) {
@@ -42,13 +46,13 @@ public class Cart {
 	//
 	
 	public boolean addMedia(Media media) {
-		if(itemsOrdered.contains(media)) {
-			System.out.println("\nYou already ordered " + media.getTitle() + "!");
-			return false;
-		}
-		itemsOrdered.add(media);
-		System.out.println("\nSuccessfully ordered " + media.getTitle());
-		return true;
+			if(itemsOrdered.contains(media)) {
+				System.out.println("\nYou already ordered " + media.getTitle() + "!");
+				return false;
+			}
+			itemsOrdered.add(media);
+			System.out.println("\nSuccessfully ordered " + media.getTitle());
+			return true;
 	}
 	
 	public boolean removeMedia(Media media) {
@@ -120,6 +124,10 @@ public class Cart {
 		while(!this.itemsOrdered.isEmpty()) {
 			this.itemsOrdered.remove(0);
 		}
+	}
+	
+	public ArrayList<Media> getItemsOrdered(){
+		return (ArrayList) itemsOrdered;
 	}
 	
 }

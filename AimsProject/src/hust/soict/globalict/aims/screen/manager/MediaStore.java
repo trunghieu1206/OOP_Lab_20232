@@ -70,12 +70,21 @@ public class MediaStore extends JPanel{
 			String button = e.getActionCommand();
 			if(button.equals("Play")){
 				if(media instanceof DigitalVideoDisc) {
-					DigitalVideoDisc toPlay = (DigitalVideoDisc) media;
-					toPlay.play();
+					try {
+						DigitalVideoDisc toPlay = (DigitalVideoDisc) media;
+						toPlay.play();
+					}
+					catch (Exception event) {
+						
+					}
 				}
 				else {
-					CompactDisc toPlay = (CompactDisc) media;
-					toPlay.play();
+					try {
+						CompactDisc toPlay = (CompactDisc) media;
+						toPlay.play();
+					} catch(Exception event) {
+						
+					}
 				}
 			}
 		}

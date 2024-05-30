@@ -4,6 +4,8 @@ import java.util.*;
 
 import javax.swing.JOptionPane;
 
+import hust.soict.globalict.aims.exception.PlayerException;
+
 public class CompactDisc extends Disc implements Playable{
 	private String artist;
 	List<Track> tracks = new ArrayList<Track>();
@@ -42,34 +44,54 @@ public class CompactDisc extends Disc implements Playable{
 		return sumLength;	
 	}
 	
-	public void play() {
-		StringBuilder str = new StringBuilder("");
-		str.append("\nCD is containing ");
-		str.append(this.tracks.size());
-		str.append(" tracks");
-		
-		if(this.tracks.size() == 0) {
-			JOptionPane.showMessageDialog(null, str);
-			return;
-		}
-		
-		str.append("\nPlaying each track one by one");
-		
-		for(Track track : this.tracks) {
-			str.append("\n*Playing track: ");
-			str.append(track.getTitle());
-			str.append(track.getInformationToPlay());
+	public String play() throws PlayerException{
+		if(this.getLength() > 0) {
+			StringBuilder str = new StringBuilder("");
+			str.append("\nCD is containing ");
+			str.append(this.tracks.size());
+			str.append(" tracks");
 			
-			System.out.println("*Playing track: " + track.getTitle());
-			track.play();
+			if(this.tracks.size() == 0) {
+				JOptionPane.showMessageDialog(null, str);
+				return str.toString();
+			}
+			
+			str.append("\nPlaying each track one by one");
+			
+			java.util.Iterator iter = tracks.iterator();
+			
+			Track nextTrack;
+			
+			while(iter.hasNext()) {
+				nextTrack = (Track) iter.next();
+				try {
+					nextTrack.play();
+				} catch(PlayerException e) {
+					throw e;
+				}
+			}
+			
+			for(Track track : this.tracks) {
+				str.append("\n*Playing track: ");
+				str.append(track.getTitle());
+				str.append(track.getInformationToPlay());
+				
+				System.out.println("*Playing track: " + track.getTitle());
+				track.play();
+			}
+			
+			str.append("\nCD finished playing");
+			return str.toString();
+		}
+		else {
+			throw new PlayerException("ERROR: DVD Length is non-positive");
 		}
 		
-		str.append("\nCD finished playing");
-		JOptionPane.showMessageDialog(null, str);
+		
 	}
 	
 	public boolean isMatch(String title) {
-		if(this.getTitle().contains(title)) {
+		if(this.getTitle().toLowerCase().contains(title.toLowerCase())) {
 			return true;
 		}
 		return false;

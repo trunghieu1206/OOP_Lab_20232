@@ -1,8 +1,12 @@
 package hust.soict.globalict.aims;
 
 import java.util.*;
+
+import javax.swing.JOptionPane;
+
 import java.io.*;
 import hust.soict.globalict.aims.cart.Cart;
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.*;
 import hust.soict.globalict.aims.store.*;
 
@@ -221,7 +225,7 @@ public class Aims{
 				"Alibaba",
 				"Animation",
 				"Somebody",
-				34,
+				-6,
 				50.0f
 		);
 		store.addMedia(dvd4);
@@ -328,11 +332,23 @@ public class Aims{
 						
 						if(searchedItem instanceof DigitalVideoDisc) {
 							DigitalVideoDisc playableSearchedItem = (DigitalVideoDisc) searchedItem;
-							playableSearchedItem.play();
+							try{
+								playableSearchedItem.play();
+							} catch(PlayerException e) {
+								System.out.println("An error occurred " + e.getMessage());
+								e.printStackTrace();
+								
+							}
 						}
 						else if(searchedItem instanceof CompactDisc) {
 							CompactDisc playableSearchedItem = (CompactDisc) searchedItem;
-							playableSearchedItem.play();
+							try{
+								playableSearchedItem.play();
+							} catch(PlayerException e) {
+								System.out.println("An error occurred " + e.getMessage());
+								e.printStackTrace();
+								
+							}
 
 						}
 						else  if(searchedItem != null){
@@ -430,11 +446,24 @@ public class Aims{
 					case 2: //Play this Media
 						if(searchedItem instanceof DigitalVideoDisc) {
 							DigitalVideoDisc playableItem = (DigitalVideoDisc) searchedItem;
-							playableItem.play();
+							try{
+								playableItem.play();
+							} catch(PlayerException e) {
+								System.out.println("An error occurred " + e.getMessage());
+								e.printStackTrace();
+								
+							}
 						}
 						else if(searchedItem instanceof CompactDisc) {
 							CompactDisc playableItem = (CompactDisc) searchedItem;
-							playableItem.play();
+							try{
+								playableItem.play();
+							} catch(PlayerException e) {
+								System.out.println("An error occurred " + e.getMessage());
+								e.printStackTrace();
+								
+								
+							}
 						}
 						else {
 							System.out.println("\n" + searchedItem.getTitle() + " is not a DVD or a CD, cannot play!");
@@ -548,11 +577,24 @@ public class Aims{
 						
 						if(resultItem instanceof DigitalVideoDisc) {
 							DigitalVideoDisc playableItem = (DigitalVideoDisc) resultItem;
-							playableItem.play();
+							try{
+								playableItem.play();
+							} catch(PlayerException e) {
+								System.out.println("An error occurred " + e.getMessage());
+								e.printStackTrace();
+								
+							}
 						}
 						else if(resultItem instanceof CompactDisc) {
 							CompactDisc playableItem = (CompactDisc) resultItem;
-							playableItem.play();
+							try{
+								playableItem.play();
+							} catch(PlayerException e) {
+								System.out.println("An error occurred " + e.getMessage());
+								e.printStackTrace();
+								
+							}
+							
 						}
 						else if(resultItem != null){
 							System.out.println("\n" + resultItem.getTitle() + " is not a DVD or a CD, cannot play!");
@@ -578,7 +620,5 @@ public class Aims{
 		System.out.println("\nApp exitted");
 		keyboard.close();
 		System.exit(0);;
-		
 	}
-	
 }
