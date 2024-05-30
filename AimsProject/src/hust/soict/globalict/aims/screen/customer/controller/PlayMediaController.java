@@ -3,6 +3,7 @@ package hust.soict.globalict.aims.screen.customer.controller;
 import java.io.IOException;
 
 import hust.soict.globalict.aims.cart.Cart;
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
@@ -62,8 +63,10 @@ public class PlayMediaController {
 				DigitalVideoDisc newMedia = (DigitalVideoDisc) media;
 				mediaContent.setText(newMedia.play());
 			}
-			catch (Exception e){
+			catch (PlayerException e){
 				System.err.println("Cannot play, DVD contains non-positive length");
+				MediaTitle.setVisible(false);
+				mediaContent.setText("Cannot play because DVD length is non-positive");
 			}
 		}
 		else {
@@ -71,8 +74,10 @@ public class PlayMediaController {
 				CompactDisc newMedia = (CompactDisc) media;
 				mediaContent.setText(newMedia.play());
 			}
-			catch (Exception e) {
-				
+			catch (PlayerException e) {
+				System.err.println("cannot play, DVD contains non-positive length");
+				MediaTitle.setVisible(false);
+				mediaContent.setText("Cannot play CD contains non-positive length track");
 			}
 		}
 	}

@@ -1,11 +1,14 @@
 package hust.soict.globalict.aims.screen.customer.controller;
 
 import hust.soict.globalict.aims.cart.Cart;
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.media.Playable;
 import hust.soict.globalict.aims.store.Store;
+
+import java.io.IOException;
 
 import javax.swing.JOptionPane;
 import javafx.event.ActionEvent;
@@ -58,8 +61,7 @@ public class ItemController {
     		dialog.setScene(new Scene(root));
     		dialog.setTitle("Media playing");
     		dialog.show();
-    		
-		} catch(Exception e) {
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
     		

@@ -1,4 +1,4 @@
-package hust.soict.globalict.test.screen.customer.store;
+package hust.soict.globalict.aims.screen.customer;
 
 import hust.soict.globalict.aims.cart.Cart;
 import hust.soict.globalict.aims.media.Book;
@@ -13,7 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class TestViewStoreScreen extends Application{
+public class ViewStoreScreen extends Application{
 	private static Store store;
 	private static Cart cart;
 	

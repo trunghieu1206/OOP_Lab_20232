@@ -58,6 +58,19 @@ public class CompactDisc extends Disc implements Playable{
 			
 			str.append("\nPlaying each track one by one");
 			
+			java.util.Iterator iter = tracks.iterator();
+			
+			Track nextTrack;
+			
+			while(iter.hasNext()) {
+				nextTrack = (Track) iter.next();
+				try {
+					nextTrack.play();
+				} catch(PlayerException e) {
+					throw e;
+				}
+			}
+			
 			for(Track track : this.tracks) {
 				str.append("\n*Playing track: ");
 				str.append(track.getTitle());

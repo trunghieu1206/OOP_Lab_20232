@@ -81,13 +81,13 @@ public class CartController {
     @FXML
     void radioBtnFilterIdPressed(ActionEvent event) {
     	this.choice = 1;
-    	System.out.println("1");
+    	System.out.println(this.choice);
     }
     
     @FXML
     void radioBtnFilterTitlePressed(ActionEvent event) {
     	this.choice = 0;
-    	System.out.println("0");
+    	System.out.println(this.choice);
     }
     
     @FXML
@@ -178,38 +178,29 @@ public class CartController {
 		//Wrap the ObservableList in a FilteredList (initially displays all items)
 		FilteredList<Media> filteredData = new FilteredList<>(oListMedia, b -> true);
 		
-		if(this.choice == 0) {
-			//filter by title
-			tfFilter.textProperty().addListener((observable, oldValue, newValue) -> {
-				filteredData.setPredicate(media -> {
-					// if filter text is empty then displays all
-					if(newValue == null || newValue.isEmpty()) {
+		
+		tfFilter.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(media -> {
+				// if filter text is empty then displays all
+				if(newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+				
+				//filter by ID
+				if(this.choice == 0) {
+					if(media.isMatch(newValue.toString().toLowerCase())) {
 						return true;
 					}
-					
-					if(media.isMatch(newValue.toLowerCase())) {
-						return true;
-					}
-					return false;
-				});
-			});
-		}
-		else {
-			//filter by id
-			tfFilter.textProperty().addListener((observable, oldValue, newValue) -> {
-				filteredData.setPredicate(media -> {
-					// if filter text is empty then displays all
-					if(newValue == null || newValue.isEmpty()) {
-						return true;
-					}
-					
+				}
+				//filter by Title
+				else {
 					if(media.getId() == Integer.parseInt(newValue)) {
 						return true;
 					}
-					return false;
-				});
+				}
+				return false;
 			});
-		}
+		});
 		
 		
 		//Wrap the filteredList in a sortedList
@@ -244,10 +235,6 @@ public class CartController {
 		}
 	}
 	
-	
-	void showFilteredMedia(String searchValue) {
-		
-	}
 	
 	@FXML
     void btnViewStorePressed(ActionEvent event) {
