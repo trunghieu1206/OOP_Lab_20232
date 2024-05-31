@@ -337,6 +337,8 @@ public class Aims{
 							} catch(PlayerException e) {
 								System.out.println("An error occurred " + e.getMessage());
 								e.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Cannot play, DVD length is non-positive", "Error", JOptionPane.ERROR_MESSAGE);
+								
 								
 							}
 						}
@@ -347,6 +349,8 @@ public class Aims{
 							} catch(PlayerException e) {
 								System.out.println("An error occurred " + e.getMessage());
 								e.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Cannot play, one of tracks' length in CD is non-positive", "Error", JOptionPane.ERROR_MESSAGE);
+								
 								
 							}
 
@@ -451,6 +455,8 @@ public class Aims{
 							} catch(PlayerException e) {
 								System.out.println("An error occurred " + e.getMessage());
 								e.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Cannot play, DVD length is non-positive", "Error", JOptionPane.ERROR_MESSAGE);
+								
 								
 							}
 						}
@@ -461,6 +467,8 @@ public class Aims{
 							} catch(PlayerException e) {
 								System.out.println("An error occurred " + e.getMessage());
 								e.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Cannot play, one of tracks' length in CD is non-positive", "Error", JOptionPane.ERROR_MESSAGE);
+								
 								
 								
 							}
@@ -582,6 +590,8 @@ public class Aims{
 							} catch(PlayerException e) {
 								System.out.println("An error occurred " + e.getMessage());
 								e.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Cannot play, DVD length is non-positive", "Error", JOptionPane.ERROR_MESSAGE);
+								
 								
 							}
 						}
@@ -592,6 +602,8 @@ public class Aims{
 							} catch(PlayerException e) {
 								System.out.println("An error occurred " + e.getMessage());
 								e.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Cannot play, one of tracks' length in CD is non-positive", "Error", JOptionPane.ERROR_MESSAGE);
+								
 								
 							}
 							
