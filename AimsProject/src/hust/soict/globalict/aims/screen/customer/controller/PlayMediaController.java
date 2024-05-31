@@ -75,7 +75,7 @@ public class PlayMediaController {
 				mediaContent.setText(newMedia.play());
 			}
 			catch (PlayerException e) {
-				System.err.println("cannot play, DVD contains non-positive length");
+				System.err.println("cannot play, CD contains non-positive length");
 				MediaTitle.setVisible(false);
 				mediaContent.setText("Cannot play CD contains non-positive length track");
 			}

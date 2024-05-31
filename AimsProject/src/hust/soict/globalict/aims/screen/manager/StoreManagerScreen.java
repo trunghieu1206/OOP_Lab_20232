@@ -135,7 +135,7 @@ public class StoreManagerScreen extends JFrame{
 				"Alibaba",
 				"Animation",
 				"Somebody",
-				34,
+				-6,
 				50.0f
 		);
 		store.addMedia(dvd4);
@@ -159,7 +159,7 @@ public class StoreManagerScreen extends JFrame{
 				99.9f,
 				"hieu"
 		);
-		cd1.addTrack(new Track("track 1", 5));
+		cd1.addTrack(new Track("track 1", -5));
 		cd1.addTrack(new Track("track 2", 6));
 		store.addMedia(cd1);
 		

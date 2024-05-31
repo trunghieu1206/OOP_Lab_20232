@@ -1,6 +1,7 @@
 package hust.soict.globalict.aims.screen.manager;
 
 import hust.soict.globalict.aims.store.*;
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.*;
 
 import javax.swing.*;
@@ -72,17 +73,20 @@ public class MediaStore extends JPanel{
 				if(media instanceof DigitalVideoDisc) {
 					try {
 						DigitalVideoDisc toPlay = (DigitalVideoDisc) media;
-						toPlay.play();
+						String displayText = toPlay.play();
+						JOptionPane.showMessageDialog(null, displayText);
 					}
-					catch (Exception event) {
-						
+					catch (PlayerException event) {
+						JOptionPane.showMessageDialog(null, "Cannot play, DVD length is non-positive", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				else {
 					try {
 						CompactDisc toPlay = (CompactDisc) media;
-						toPlay.play();
-					} catch(Exception event) {
+						String displayText = toPlay.play();
+						JOptionPane.showMessageDialog(null, displayText);
+					} catch(PlayerException event) {
+						JOptionPane.showMessageDialog(null, "Cannot play, one of tracks' length in CD is non-positive", "Error", JOptionPane.ERROR_MESSAGE);
 						
 					}
 				}
